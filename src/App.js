@@ -1,19 +1,26 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled from "styled-components";
 
-class App extends Component {
+const Button = styled.button`
+  background: rgb(217, 40, 35);
+  color: white;
+  outline: none;
+`;
+
+class App extends React.Component {
+  startGame = () => {
+    // TODO: this
+    alert("new game starting");
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <main>
+        <h1>Welcome to the Trivia Challenge!</h1>
+        <p>You will be presented with 10 True or False questions.</p>
+        <p>Can you score 100%?</p>
+        <Button onClick={this.startGame}>BEGIN</Button>
+      </main>
     );
   }
 }
