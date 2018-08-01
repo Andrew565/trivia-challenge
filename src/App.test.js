@@ -1,10 +1,26 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import Enzyme, { shallow } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import App from "./App";
 import "jest";
 
+Enzyme.configure({ adapter: new Adapter() });
+
+let theApp;
+
+beforeEach(() => {
+  theApp = shallow(<App />);
+});
+
 it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+  expect(theApp).toBeDefined();
+});
+
+it("renders a 'begin' button", () => {
+  expect(
+    theApp
+      .find("#BeginButton")
+      .children()
+      .text()
+  ).toBe("BEGIN");
 });
