@@ -1,10 +1,7 @@
 import React from "react";
-import Enzyme, { shallow, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
+import { mount } from "enzyme";
 import App from "./App";
 import Game from "./models/Game";
-
-Enzyme.configure({ adapter: new Adapter() });
 
 let theApp;
 
