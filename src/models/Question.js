@@ -8,4 +8,10 @@ export default class Question {
   answerIsTrue = () => {
     return this.correct_answer === "True";
   };
+
+  getAnswerCorrectness = submitted_answer => {
+    const { question } = this;
+    const correct = submitted_answer === this.answerIsTrue();
+    return { question, correct };
+  };
 }
