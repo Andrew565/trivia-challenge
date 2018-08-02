@@ -1,10 +1,7 @@
-import QuestionStore from "./QuestionStore";
+import qS from "./QuestionStore";
 import Question from "./Question";
 
-let qS;
-
 beforeAll(() => {
-  qS = new QuestionStore();
   return qS.getQuestions();
 });
 

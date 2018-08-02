@@ -3,11 +3,6 @@ import QuestionStore from "./QuestionStore";
 
 export default class Game {
   @observable answers = [];
-  @observable questionStore = new QuestionStore();
-
-  constructor() {
-    this.questionStore.getQuestions();
-  }
 
   @computed
   get numberOfCorrectAnswers() {
@@ -16,7 +11,7 @@ export default class Game {
 
   @action
   logAnswer(questionNumber, answer) {
-    const answerCorrectness = this.questionStore.questions[questionNumber].getAnswerCorrectness(answer);
+    const answerCorrectness = QuestionStore.questions[questionNumber].getAnswerCorrectness(answer);
     this.answers[questionNumber] = answerCorrectness;
   }
 }

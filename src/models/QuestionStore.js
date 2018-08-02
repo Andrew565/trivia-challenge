@@ -2,7 +2,7 @@ import { observable, action } from "mobx";
 import Question from "./Question";
 import "whatwg-fetch"; // fetch polyfill
 
-export default class QuestionStore {
+export class QuestionStore {
   @observable questions = [];
 
   @action
@@ -25,3 +25,6 @@ export default class QuestionStore {
       });
   }
 }
+
+const questionStore = new QuestionStore();
+export default questionStore;
