@@ -1,27 +1,24 @@
 import React from "react";
-import styled from "styled-components";
+import { observer } from "mobx-react";
+import Game from "./models/Game";
+import * as Pages from "./pages";
 
-const Button = styled.button`
-  background: rgb(217, 40, 35);
-  color: white;
-  outline: none;
-`;
-
+@observer
 class App extends React.Component {
   startGame = () => {
-    // TODO: this
-    alert("new game starting");
+    Game.startGame();
   };
 
   render() {
+    const showIntro = !Game.started && !Game.ended;
+    const showQuestions = Game.started && !Game.ended;
+    const showSummary = Game.started && Game.ended;
+
     return (
       <main>
-        <h1>Welcome to the Trivia Challenge!</h1>
-        <p>You will be presented with 10 True or False questions.</p>
-        <p>Can you score 100%?</p>
-        <Button id="BeginButton" onClick={this.startGame}>
-          BEGIN
-        </Button>
+        {showIntro && <Pages.Intro onClick={this.startGame} />}
+        {/* {showQuestions && <Pages.Questions />} */}
+        {/* {showSummary && <Pages.Summary />} */}
       </main>
     );
   }

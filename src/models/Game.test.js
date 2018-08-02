@@ -1,4 +1,4 @@
-import Game from "./Game";
+import { Game } from "./Game";
 import QuestionStore from "./QuestionStore";
 import Question from "./Question";
 
