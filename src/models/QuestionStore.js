@@ -1,9 +1,22 @@
-import { observable, action } from "mobx";
+import { computed, observable, action } from "mobx";
 import Question from "./Question";
 import "whatwg-fetch"; // fetch polyfill
 
 export class QuestionStore {
   @observable questions = [];
+  @observable currentQuestionId = null;
+
+  @computed
+  get currentQuestion() {
+    return this.currentQuestionId !== null && this.currentQuestionId <= this.questions.length
+      ? this.questions[this.currentQuestionId]
+      : null;
+  }
+
+  @action
+  getNextQuestionId() {
+    return this.currentQuestionId++;
+  }
 
   @action
   getQuestions() {

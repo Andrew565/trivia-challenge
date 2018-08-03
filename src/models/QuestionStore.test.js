@@ -12,3 +12,7 @@ it("should retrieve 10 questions", () => {
 test("questions should be of type Question", () => {
   expect(qS.questions[0]).toBeInstanceOf(Question);
 });
+
+it("should start with a currentQuestionId of null", () => {
+  expect(qS.currentQuestionId).toBe(null);
+});

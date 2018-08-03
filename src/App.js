@@ -17,7 +17,7 @@ class App extends React.Component {
     return (
       <main>
         {showIntro && <Pages.Intro onClick={this.startGame} />}
-        {/* {showQuestions && <Pages.Questions />} */}
+        {showQuestions && <Pages.Questions />}
         {/* {showSummary && <Pages.Summary />} */}
       </main>
     );

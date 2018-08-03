@@ -5,7 +5,6 @@ export class Game {
   @observable answers = [];
   @observable started = false;
   @observable ended = false;
-  @observable currentQuestion = null;
 
   @computed
   get numberOfCorrectAnswers() {
@@ -16,13 +15,22 @@ export class Game {
   startGame() {
     this.started = true;
     this.ended = false;
-    this.currentQuestion = 0;
+    QuestionStore.currentQuestionId = 0;
   }
 
   @action
-  logAnswer(questionNumber, answer) {
-    const answerCorrectness = QuestionStore.questions[questionNumber].getAnswerCorrectness(answer);
-    this.answers[questionNumber] = answerCorrectness;
+  checkForGameEnd() {
+    const nextId = QuestionStore.getNextQuestionId() + 1;
+
+    if (nextId === QuestionStore.questions.length) this.ended = true;
+  }
+
+  @action
+  logAnswer(answer) {
+    const answerCorrectness = QuestionStore.currentQuestion.getAnswerCorrectness(answer);
+    this.answers[QuestionStore.currentQuestionId] = answerCorrectness;
+
+    this.checkForGameEnd();
   }
 }
 
