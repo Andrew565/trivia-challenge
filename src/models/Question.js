@@ -12,6 +12,6 @@ export default class Question {
   getAnswerCorrectness = submitted_answer => {
     const { question } = this;
     const correct = submitted_answer === this.answerIsTrue();
-    return { question, correct };
+    return { question, submitted_answer, correct };
   };
 }

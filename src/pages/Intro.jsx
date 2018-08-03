@@ -3,8 +3,11 @@ import styled from "styled-components";
 
 const Button = styled.button`
   background: rgb(217, 40, 35);
+  font-size: 2em;
+  border-radius: 0.5em;
   color: white;
   outline: none;
+  border: none;
 `;
 
 const Intro = ({ onClick }) => (
@@ -17,7 +20,5 @@ const Intro = ({ onClick }) => (
     </Button>
   </React.Fragment>
 );
-
-
 
 export default Intro;

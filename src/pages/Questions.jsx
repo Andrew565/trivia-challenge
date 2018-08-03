@@ -11,6 +11,7 @@ const FalseButton = styled.button`
   font-size: 2em;
   color: white;
   outline: none;
+  border: none;
 `;
 
 const TrueButton = styled.button`
@@ -19,6 +20,7 @@ const TrueButton = styled.button`
   font-size: 2em;
   color: white;
   outline: none;
+  border: none;
 `;
 
 @observer

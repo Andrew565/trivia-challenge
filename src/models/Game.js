@@ -12,12 +12,12 @@ export class Game {
   }
 
   @action
-  startGame() {
+  startGame = () => {
     QuestionStore.getQuestions();
     QuestionStore.currentQuestionId = 0;
     this.started = true;
     this.ended = false;
-  }
+  };
 
   @action
   checkForGameEnd() {
