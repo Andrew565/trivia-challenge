@@ -8,7 +8,9 @@ export class QuestionStore {
 
   @computed
   get currentQuestion() {
-    return this.currentQuestionId !== null && this.currentQuestionId <= this.questions.length
+    return this.currentQuestionId !== null &&
+      this.questions.length > 0 &&
+      this.currentQuestionId <= this.questions.length
       ? this.questions[this.currentQuestionId]
       : null;
   }

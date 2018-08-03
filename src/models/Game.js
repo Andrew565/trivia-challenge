@@ -13,9 +13,10 @@ export class Game {
 
   @action
   startGame() {
+    QuestionStore.getQuestions();
+    QuestionStore.currentQuestionId = 0;
     this.started = true;
     this.ended = false;
-    QuestionStore.currentQuestionId = 0;
   }
 
   @action

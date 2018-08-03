@@ -3,34 +3,45 @@ import { computed } from "mobx";
 import { observer } from "mobx-react";
 import styled from "styled-components";
 import QuestionStore from "../models/QuestionStore";
-import { Game } from "../models/Game";
+import Game from "../models/Game";
 
 const FalseButton = styled.button`
   background: rgb(217, 40, 35);
+  border-radius: 0.5em;
+  font-size: 2em;
   color: white;
   outline: none;
 `;
 
-const Questions = observer(() => {
-  const question = computed(() => QuestionStore.currentQuestion);
+const TrueButton = styled.button`
+  background: green;
+  border-radius: 0.5em;
+  font-size: 2em;
+  color: white;
+  outline: none;
+`;
 
-  const answerFalse = () => {
-    Game.logAnswer(false);
-  };
+@observer
+export default class Questions extends React.Component {
+  @computed
+  get currentQuestion() {
+    return QuestionStore.currentQuestion;
+  }
 
-  const answerTrue = () => {
-    Game.logAnswer(true);
-  };
-
-  return (
-    <React.Fragment>
-      <h1>{question.category}</h1>
-      <p>{question.question}</p>
-      <FalseButton className="false-button" onClick={answerFalse}>
-        False
-      </FalseButton>
-    </React.Fragment>
-  );
-});
-
-export default Questions;
+  render() {
+    return this.currentQuestion && this.currentQuestion.category ? (
+      <React.Fragment>
+        <h1>{this.currentQuestion.category}</h1>
+        <p dangerouslySetInnerHTML={{ __html: this.currentQuestion.question }} />
+        <TrueButton className="true-button" onClick={() => Game.logAnswer(true)}>
+          True
+        </TrueButton>
+        <FalseButton className="false-button" onClick={() => Game.logAnswer(false)}>
+          False
+        </FalseButton>
+      </React.Fragment>
+    ) : (
+      <h1>Loading</h1>
+    );
+  }
+}
