@@ -3,7 +3,6 @@ import { mount } from "enzyme";
 import Questions from "./Questions";
 import Question from "../models/Question";
 import QuestionStore from "../models/QuestionStore";
-import { Game } from "../models/Game";
 
 let trueClick = jest.fn();
 let falseClick = jest.fn();
@@ -12,7 +11,6 @@ Questions.prototype.trueClick = trueClick;
 Questions.prototype.falseClick = falseClick;
 
 let questions = mount(<Questions />);
-let game = new Game();
 
 describe("before questions are loaded into the store", () => {
   it("renders a loading message by default", () => {

@@ -28,7 +28,7 @@ const SubmittedAnswer = styled.span`
 const Summary = observer(() => (
   <React.Fragment>
     <h1>You scored</h1>
-    <h1>{Game.numberOfCorrectAnswers}/10</h1>
+    <h1 id="numberCorrect">{Game.numberOfCorrectAnswers}/10</h1>
     <List>
       {Game.answers.map(answer => (
         <li key={answer.question}>
