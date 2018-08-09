@@ -30,15 +30,23 @@ export default class Questions extends React.Component {
     return QuestionStore.currentQuestion;
   }
 
+  falseClick() {
+    Game.logAnswer(false);
+  }
+
+  trueClick() {
+    Game.logAnswer(true);
+  }
+
   render() {
     return this.currentQuestion && this.currentQuestion.category ? (
       <React.Fragment>
         <h1>{this.currentQuestion.category}</h1>
         <p dangerouslySetInnerHTML={{ __html: this.currentQuestion.question }} />
-        <TrueButton className="true-button" onClick={() => Game.logAnswer(true)}>
+        <TrueButton className="true-button" onClick={this.trueClick}>
           True
         </TrueButton>
-        <FalseButton className="false-button" onClick={() => Game.logAnswer(false)}>
+        <FalseButton className="false-button" onClick={this.falseClick}>
           False
         </FalseButton>
       </React.Fragment>

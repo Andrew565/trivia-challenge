@@ -5,11 +5,11 @@ import Game from "./models/Game";
 
 let theApp;
 
-beforeEach(() => {
+beforeAll(() => {
   theApp = mount(<App />);
 });
 
-it("renders a 'begin' button", () => {
+it("starts on the intro page and renders a 'begin' button", () => {
   expect(
     theApp
       .find("#BeginButton")

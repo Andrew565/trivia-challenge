@@ -5,6 +5,7 @@ import "whatwg-fetch"; // fetch polyfill
 export class QuestionStore {
   @observable questions = [];
   @observable currentQuestionId = null;
+  apiUrl = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean";
 
   @computed
   get currentQuestion() {
@@ -22,21 +23,21 @@ export class QuestionStore {
 
   @action
   getQuestions() {
-    return fetch("https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean")
+    return fetch(this.apiUrl)
       .then(resp => {
         if (resp.ok) {
           return resp.json();
-        } else {
-          resp.text().then(text => {
-            throw new Error(text);
-          });
         }
+
+        throw new Error("Network response not ok.");
       })
       .then(json => {
         this.questions = json.results.map(question => new Question(question));
       })
-      .catch(e => {
-        console.error("an error occurred:", e.message);
+      .catch(err => {
+        console.error("an error occurred:", err.message);
+        this.questions = [];
+        return Promise.resolve([]);
       });
   }
 }
