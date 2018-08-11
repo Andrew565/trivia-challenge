@@ -5,7 +5,7 @@ import "whatwg-fetch"; // fetch polyfill
 export class QuestionStore {
   @observable questions = [];
   @observable currentQuestionId = null;
-  apiUrl = "https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean";
+  apiUrl = "https://opentdb.com/api.php?amount=10&type=multiple";
 
   @computed
   get currentQuestion() {

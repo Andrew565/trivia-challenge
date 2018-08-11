@@ -19,10 +19,6 @@ test("question category should match", () => {
   expect(question.category).toBe(data.category);
 });
 
-it("should return a boolean true for answerIsTrue", () => {
-  expect(question.answerIsTrue()).toBeTruthy();
-});
-
 it("should return a certain object when checking correctness", () => {
   expect(question.getAnswerCorrectness(true)).toMatchObject({
     question: "In &quot;The Sims&quot; series, the most members in a household you can have is 8.",
