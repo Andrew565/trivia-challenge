@@ -4,11 +4,9 @@ import Questions from "./Questions";
 import Question from "../models/Question";
 import QuestionStore from "../models/QuestionStore";
 
-let trueClick = jest.fn();
-let falseClick = jest.fn();
+let submitAnswer = jest.fn();
 
-Questions.prototype.trueClick = trueClick;
-Questions.prototype.falseClick = falseClick;
+Questions.prototype.submitAnswer = submitAnswer;
 
 let questions = mount(<Questions />);
 
@@ -24,11 +22,11 @@ describe("after questions are loaded into the store", () => {
   beforeEach(() => {
     var data = {
       category: "Entertainment: Video Games",
-      type: "boolean",
+      type: "multiple",
       difficulty: "hard",
-      question: "In &quot;The Sims&quot; series, the most members in a household you can have is 8.",
-      correct_answer: "True",
-      incorrect_answers: ["False"]
+      question: "In which game did the character &quot;Mario&quot; make his first appearance?",
+      correct_answer: "Donkey Kong",
+      incorrect_answers: ["Super Mario Bros.", "Super Mario Land", "Mario Bros."]
     };
 
     question = new Question(data);
@@ -38,24 +36,16 @@ describe("after questions are loaded into the store", () => {
     questions.update();
   });
 
-  it("renders a question and at least two buttons", () => {
+  it("renders a question and 1 button per answer", () => {
     expect(questions.find("p").length).toBeGreaterThan(0);
-    expect(questions.find("button").length).toBeGreaterThan(1);
+    expect(questions.find("button").length).toBe(question.answers().length);
   });
 
-  it("calls the trueClick function when clicking the true button", () => {
+  it("calls the submitAnswer function when clicking an answer button", () => {
     questions
-      .find(".true-button")
+      .find("button")
       .at(0)
       .simulate("click");
-    expect(questions.instance().trueClick).toHaveBeenCalled();
-  });
-
-  it("calls the falseClick function when clicking the false button", () => {
-    questions
-      .find(".false-button")
-      .at(0)
-      .simulate("click");
-    expect(questions.instance().falseClick).toHaveBeenCalled();
+    expect(questions.instance().submitAnswer).toHaveBeenCalled();
   });
 });

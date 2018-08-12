@@ -5,9 +5,13 @@ export default class Question {
     });
   }
 
+  answers = () => {
+    return [].concat(this.correct_answer, this.incorrect_answers);
+  };
+
   getAnswerCorrectness = submitted_answer => {
     const { question } = this;
-    const correct = "" + submitted_answer === this.correct_answer.toLowerCase();
+    const correct = submitted_answer === this.correct_answer;
     return { question, submitted_answer, correct };
   };
 }

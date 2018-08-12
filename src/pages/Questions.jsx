@@ -5,20 +5,9 @@ import styled from "styled-components";
 import QuestionStore from "../models/QuestionStore";
 import Game from "../models/Game";
 
-const FalseButton = styled.button`
-  background: rgb(217, 40, 35);
+const AnswerButton = styled.button`
   border-radius: 0.5em;
   font-size: 2em;
-  color: white;
-  outline: none;
-  border: none;
-`;
-
-const TrueButton = styled.button`
-  background: green;
-  border-radius: 0.5em;
-  font-size: 2em;
-  color: white;
   outline: none;
   border: none;
 `;
@@ -30,12 +19,8 @@ export default class Questions extends React.Component {
     return QuestionStore.currentQuestion;
   }
 
-  falseClick() {
-    Game.logAnswer(false);
-  }
-
-  trueClick() {
-    Game.logAnswer(true);
+  submitAnswer(answer) {
+    Game.logAnswer(answer);
   }
 
   render() {
@@ -43,12 +28,11 @@ export default class Questions extends React.Component {
       <React.Fragment>
         <h1>{this.currentQuestion.category}</h1>
         <p dangerouslySetInnerHTML={{ __html: this.currentQuestion.question }} />
-        <TrueButton className="true-button" onClick={this.trueClick}>
-          True
-        </TrueButton>
-        <FalseButton className="false-button" onClick={this.falseClick}>
-          False
-        </FalseButton>
+        {this.currentQuestion.answers().map((answer, i) => (
+          <AnswerButton key={i} className="answer-button" onClick={this.submitAnswer} value={answer}>
+            {answer}
+          </AnswerButton>
+        ))}
       </React.Fragment>
     ) : (
       <h1>Loading</h1>

@@ -33,7 +33,7 @@ beforeEach(() => {
 });
 
 it("should allow a correct answer to be logged", () => {
-  game.logAnswer(true);
+  game.logAnswer("True");
   expect(game.answers[0]).toMatchObject({
     question: "Tests are good",
     correct: true
@@ -41,7 +41,7 @@ it("should allow a correct answer to be logged", () => {
 });
 
 it("should allow an incorrect answer to be logged", () => {
-  game.logAnswer(false);
+  game.logAnswer("False");
   expect(game.answers[0]).toMatchObject({
     question: "Tests are good",
     correct: false
@@ -49,8 +49,8 @@ it("should allow an incorrect answer to be logged", () => {
 });
 
 it("should count the number of correct answers correctly", () => {
-  game.logAnswer(true);
-  game.logAnswer(true); // This one is an incorrect answer
+  game.logAnswer("True");
+  game.logAnswer("True"); // This one is an incorrect answer
   expect(game.numberOfCorrectAnswers).toBe(1);
 });
 
