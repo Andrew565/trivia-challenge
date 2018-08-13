@@ -5,6 +5,10 @@
 body {
   font-family: sans-serif;
   height: 100vh;
+  overflow: auto;
+  background: #292588;
+  font-size: 18px;
+  font-weight: bold;
 }
 
 #root {

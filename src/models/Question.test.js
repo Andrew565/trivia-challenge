@@ -20,12 +20,14 @@ test("question category should match", () => {
 });
 
 it("should compile the answers into a single array", () => {
-  expect(question.answers()).toMatchObject(["Donkey Kong", "Super Mario Bros.", "Super Mario Land", "Mario Bros."]);
+  const expected = ["Donkey Kong", "Super Mario Bros.", "Super Mario Land", "Mario Bros."];
+  expect(question.answers).toEqual(expect.arrayContaining(expected));
 });
 
 it("should return a certain object when checking correctness", () => {
   expect(question.getAnswerCorrectness("Donkey Kong")).toMatchObject({
     question: "In which game did the character &quot;Mario&quot; make his first appearance?",
+    submitted_answer: "Donkey Kong",
     correct: true
   });
 });

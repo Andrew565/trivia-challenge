@@ -38,12 +38,12 @@ describe("after questions are loaded into the store", () => {
 
   it("renders a question and 1 button per answer", () => {
     expect(questions.find("p").length).toBeGreaterThan(0);
-    expect(questions.find("button").length).toBe(question.answers().length);
+    expect(questions.find(".answer-button").length).toBe(question.answers.length * 2); // Because of styled-components, two nodes are returned for each answer instead of one
   });
 
   it("calls the submitAnswer function when clicking an answer button", () => {
     questions
-      .find("button")
+      .find(".answer-button")
       .at(0)
       .simulate("click");
     expect(questions.instance().submitAnswer).toHaveBeenCalled();
